@@ -670,6 +670,6 @@ def get_answers_type_7_1 params = Array.new
 	system("g++ c.cpp -o c")
 	ans = `./c`.split(";")[0..1]
 	
-	q = "a = ?, result = ?\n\nlong testValue = 0x#{value};\nint a = 0;\nif ((result = testValue #{op1} testValue #{op2} testValue\n #{op3} (1 << #{shift})))\n{\n\ta = 1;\n}\nelse\n{\n\ta = 2;\n}\n---------\na = #{ans[0]}, result = #{ans[1]}\n"
+	q = "a = ?, result = ?\n\nlong testValue = 0x#{value};\nint a = 0;\nif ((result = testValue #{op1} testValue #{op2} testValue\n #{op3} (1 << #{shift})))\n{\n\ta = 1;\n}\nelse\n{\n\ta = 2;\n}\n---------\na = #{ans[0]}, result = 0x#{ans[1].to_i(10).to_s(16).upcase}\n"
 		
 end
