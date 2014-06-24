@@ -1,11 +1,16 @@
-BitwiseTests
-============
-
+BitwiseTests Project
+============================================================================================================================
 Bitwise Operations Test Generator
+============================================================================================================================
+A Ruby program, that generates tests, which include bitwise exercises and the answers to them. 
+Made on Ruby 1.9.3
+============================================================================================================================
 
+Requirements:
 
-https://drive.google.com/folderview?id=0B2u3mIflzKI4RmtyeWlEbWtyWWM&usp=sharing&tid=0B2u3mIflzKI4Y0MtT1RkMFlaRnc
+  -Installed Ruby. You can get it from -> https://www.ruby-lang.org/en/installation/ .
+  
+  -Prawn gem. Install via "gem install prawn". Minimum version of Ruby required to support gem - Ruby 1.9.3 .
 
-http://hidroo.github.io/HexBin/
-http://var-ivaylo.bitbucket.org/
-
+  -PDF document reading software.
+============================================================================================================================
