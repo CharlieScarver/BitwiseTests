@@ -45,36 +45,27 @@ def question_type_1 diff, write_answers
 	end
 
 	if write_answers == 1 
-		a = orig.to_i(16)
-		b = insert.to_i(16) << shift
-		ans = case r 
-			when 0 then "#{(a & b).to_s(16)}"
-			when 1 then "#{(a | b).to_s(16)}"
-			when 2 then "#{(a ^ b).to_s(16)}"
-		end
 		
 		File.open("c.cpp","w") do |file|
 
-			file.print("#include <iostream>\n#include <fstream>\nusing namespace std;\nint main() {\n")
+			file.print("#include <iostream>\nusing namespace std;\nint main() {\n")
 			file.print("int a = 0;\n\nint orig = 0x#{orig};\nint insert = 0x#{insert};\na = orig #{op} (insert << #{shift});\n")
-			file.print("/*//test\nint a = 0xf;\na = a << 31;*/")
-			file.print("cout << endl << \"c: \" << hex << a << endl;\n")
-			file.print("ofstream ofs;\nofs.open (\"answers.csv\", ofstream::out | ofstream::app);\nofs << hex << a;\nofs << \",\";\nofs.close();")
+			file.print("cout << hex << a;\n")
 			file.print("\n\nreturn 0;\n}\n")
 
 		end
 
 		system("g++ c.cpp -o c")
-		system("./c")
+		ans = `./c`
 		
-		CSV.foreach("answers.csv") do |row|
-			q1 = "a = ?\n\nint orig = 0x#{orig};\nint insert = 0x#{insert};\nint a = orig #{op} (insert << #{shift});\n------\na = 0x#{row[0].upcase}\n"
-		end
+		q1 = "a = ?\n\nint orig = 0x#{orig};\nint insert = 0x#{insert};\nint a = orig #{op} (insert << #{shift});\n---------\na = 0x#{ans.upcase}\n"
 		
 	else
 		q1 = "a = ?\n\nint orig = 0x#{orig};\nint insert = 0x#{insert};\nint a = orig #{op} (insert << #{shift});"
 	end
-
+	
+	return q1
+	
 end
 
 def question_type_2 diff
